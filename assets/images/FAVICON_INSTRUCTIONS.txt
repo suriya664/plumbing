@@ -1,0 +1,44 @@
+===========================================
+FAVICON SETUP INSTRUCTIONS
+===========================================
+
+The website is configured to use favicons, but you need to add the actual image files.
+
+REQUIRED FILES:
+1. favicon.ico (32x32 pixels, ICO format)
+2. favicon-192x192.png (192x192 pixels, PNG format)
+
+HOW TO CREATE FAVICONS:
+------------------------
+Option 1: Online Favicon Generator
+- Visit https://favicon.io/ or https://realfavicongenerator.net/
+- Upload your logo/image or use their generator
+- Download the generated favicon.ico and PNG files
+- Place them in this folder (/assets/images/)
+
+Option 2: Image Editing Software
+- Create a 32x32 pixel image with your logo/icon
+- Save as favicon.ico (use online converter if needed)
+- Create a 192x192 pixel version
+- Save as favicon-192x192.png
+
+RECOMMENDED DESIGN:
+- Use a simple icon (wrench, pipe, water drop, etc.)
+- Ensure good contrast for visibility
+- Keep design simple for small sizes
+
+FILE PLACEMENT:
+---------------
+Place both files in: /assets/images/
+- favicon.ico
+- favicon-192x192.png
+
+VERIFICATION:
+-------------
+1. Add the files to /assets/images/
+2. Open any HTML page in a browser
+3. Check the browser tab - favicon should appear
+4. Test on multiple pages to ensure it works everywhere
+
+The HTML is already configured - just add the image files!
+

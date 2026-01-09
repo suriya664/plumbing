@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard - Professional Plumbing Services">
+    <title>Dashboard - Professional Plumbing Services</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230066CC' width='100' height='100' rx='20'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white'>🔧</text></svg>" type="image/svg+xml">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .dashboard-container {
+            min-height: 100vh;
+            padding: var(--space-xl) var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .dashboard-header {
+            position: relative;
+            margin-bottom: var(--space-xl);
+            width: 100%;
+            text-align: center;
+        }
+        .dashboard-header > div {
+            text-align: center;
+        }
+        .dashboard-header h1 {
+            margin-bottom: var(--space-xs);
+            text-align: center;
+        }
+        .dashboard-header p {
+            color: var(--text-light);
+            margin: 0;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        .stat-card {
+            background: var(--bg-white);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--space-xs);
+        }
+        .stat-card p {
+            color: var(--text-light);
+            margin: 0;
+        }
+        .stat-card.secondary {
+            border-left-color: var(--secondary-color);
+        }
+        .stat-card.secondary h3 {
+            color: var(--secondary-color);
+        }
+        .stat-card.success {
+            border-left-color: var(--success-color);
+        }
+        .stat-card.success h3 {
+            color: var(--success-color);
+        }
+        .stat-card.accent {
+            border-left-color: var(--accent-color);
+        }
+        .stat-card.accent h3 {
+            color: var(--accent-color);
+        }
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        .dashboard-card {
+            background: var(--bg-white);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .dashboard-card h3 {
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+            text-align: center;
+        }
+        .dashboard-card p {
+            color: var(--text-light);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        .dashboard-card .btn {
+            margin-top: var(--space-md);
+            display: inline-block;
+            width: auto;
+        }
+        .recent-activity {
+            background: var(--bg-white);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xl);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .recent-activity h2 {
+            margin-bottom: var(--space-md);
+            text-align: left;
+        }
+        .activity-item {
+            padding: var(--space-sm);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        .activity-item .activity-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        .activity-item .activity-info h4 {
+            margin-bottom: var(--space-xs);
+            font-size: 1rem;
+        }
+        .activity-item .activity-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .activity-status {
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-in-progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        .quick-actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-top: var(--space-lg);
+            justify-content: center;
+            align-items: center;
+        }
+        .logout-btn {
+            background-color: var(--error-color);
+            color: var(--bg-white);
+            border-color: var(--error-color);
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+        /* Web view alignment fixes */
+        @media (min-width: 769px) {
+            .dashboard-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-logo-container {
+                text-align: left !important;
+            }
+            .dashboard-header-logo .logo {
+                justify-content: flex-start !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: var(--space-md) var(--space-sm);
+            }
+            
+            .dashboard-header {
+                text-align: center;
+                margin-bottom: var(--space-lg);
+            }
+            
+            .dashboard-header h1 {
+                text-align: center;
+                font-size: clamp(1.75rem, 5vw, 2.5rem);
+            }
+            
+            .dashboard-header p {
+                text-align: center;
+                font-size: 0.95rem;
+            }
+            
+            .dashboard-logo-container {
+                text-align: left !important;
+            }
+            
+            .dashboard-header-logo .logo {
+                justify-content: flex-start !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .stat-card {
+                text-align: center;
+                padding: var(--space-md);
+            }
+            
+            .stat-card h3 {
+                text-align: center;
+                font-size: 1.75rem;
+            }
+            
+            .stat-card p {
+                text-align: center;
+            }
+            
+            .recent-activity {
+                padding: var(--space-md);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .recent-activity h2 {
+                text-align: center;
+                margin-bottom: var(--space-md);
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            
+            .activity-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: var(--space-sm);
+                gap: var(--space-sm);
+            }
+            
+            .activity-item .activity-info {
+                text-align: center;
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .activity-item .activity-info h4 {
+                text-align: center;
+                margin-bottom: var(--space-xs);
+            }
+            
+            .activity-item .activity-info p {
+                text-align: center;
+            }
+            
+            .activity-status {
+                margin-top: var(--space-xs);
+            }
+            
+            .dashboard-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .dashboard-card {
+                text-align: center;
+                padding: var(--space-md);
+            }
+            
+            .dashboard-card h3 {
+                text-align: center;
+                font-size: clamp(1.25rem, 3vw, 1.5rem);
+            }
+            
+            .dashboard-card p {
+                text-align: center;
+                font-size: 0.9rem;
+            }
+            
+            .dashboard-card .btn {
+                width: 100%;
+                max-width: 200px;
+                margin: var(--space-sm) auto 0;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--space-sm);
+                margin-top: var(--space-lg);
+            }
+            
+            .quick-actions .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        
+        /* Dark Theme Styles for Dashboard */
+        [data-theme="dark"] body {
+            background-color: var(--bg-white) !important;
+            color: var(--text-light) !important;
+        }
+        
+        [data-theme="dark"] .dashboard-container {
+            background-color: var(--bg-white) !important;
+            color: var(--text-light) !important;
+        }
+        
+        [data-theme="dark"] .main-content {
+            background-color: var(--bg-white) !important;
+        }
+        
+        [data-theme="dark"] .dashboard-header h1 {
+            color: var(--text-dark) !important;
+        }
+        
+        [data-theme="dark"] .dashboard-header p {
+            color: var(--text-light) !important;
+        }
+        
+        [data-theme="dark"] .stat-card {
+            background-color: #2d2d2d;
+            color: var(--text-light);
+            border-color: #404040;
+        }
+        
+        [data-theme="dark"] .stat-card h3 {
+            color: var(--primary-color);
+        }
+        
+        [data-theme="dark"] .stat-card.secondary h3 {
+            color: var(--secondary-color);
+        }
+        
+        [data-theme="dark"] .stat-card.success h3 {
+            color: var(--success-color);
+        }
+        
+        [data-theme="dark"] .stat-card.accent h3 {
+            color: var(--accent-color);
+        }
+        
+        [data-theme="dark"] .stat-card p {
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .dashboard-card {
+            background-color: #2d2d2d;
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .dashboard-card h3 {
+            color: var(--text-dark);
+        }
+        
+        [data-theme="dark"] .dashboard-card p {
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .recent-activity {
+            background-color: #2d2d2d;
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .recent-activity h2 {
+            color: var(--text-dark);
+        }
+        
+        [data-theme="dark"] .activity-item {
+            border-color: #404040;
+        }
+        
+        [data-theme="dark"] .activity-item .activity-info h4 {
+            color: var(--text-dark);
+        }
+        
+        [data-theme="dark"] .activity-item .activity-info p {
+            color: var(--text-light);
+        }
+        
+        [data-theme="dark"] .main-content {
+            background-color: var(--bg-white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Logo Only -->
+    <header class="header dashboard-header-logo" style="padding: var(--space-md) 0;">
+        <div class="dashboard-logo-container" style="max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md); text-align: center;">
+            <a href="index.html" class="logo" style="justify-content: center;">
+                <span style="white-space: nowrap;">🔧 Plumbing Pro</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's an overview of your account</p>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>12</h3>
+                    <p>Total Service Requests</p>
+                </div>
+                <div class="stat-card secondary">
+                    <h3>3</h3>
+                    <p>Active Projects</p>
+                </div>
+                <div class="stat-card success">
+                    <h3>9</h3>
+                    <p>Completed Services</p>
+                </div>
+                <div class="stat-card accent">
+                    <h3>$2,450</h3>
+                    <p>Total Spent</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Leak Detection Service</h4>
+                        <p>Requested on January 15, 2025</p>
+                    </div>
+                    <span class="activity-status status-in-progress">In Progress</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Water Heater Installation</h4>
+                        <p>Completed on January 12, 2025</p>
+                    </div>
+                    <span class="activity-status status-completed">Completed</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Bathroom Plumbing Repair</h4>
+                        <p>Requested on January 10, 2025</p>
+                    </div>
+                    <span class="activity-status status-completed">Completed</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Kitchen Sink Installation</h4>
+                        <p>Requested on January 8, 2025</p>
+                    </div>
+                    <span class="activity-status status-pending">Pending</span>
+                </div>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>📋 Your Services</h3>
+                    <p>View and manage your plumbing service requests. Track status and schedule appointments.</p>
+                    <a href="services.html" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>🏗️ Projects</h3>
+                    <p>Track your ongoing and completed projects. See progress updates and timelines.</p>
+                    <a href="projects.html" class="btn btn-outline">View Projects</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>💬 Contact Support</h3>
+                    <p>Get in touch with our support team. We're here to help with any questions or concerns.</p>
+                    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>❓ FAQ</h3>
+                    <p>Find answers to common questions about our services, pricing.</p>
+                    <a href="faq.html" class="btn btn-outline">View FAQ</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>📄 Service History</h3>
+                    <p>Review your complete service history and download invoices or receipts.</p>
+                    <a href="services.html" class="btn btn-outline">View History</a>
+                </div>
+                <div class="dashboard-card">
+                    <h3>⚙️ Account Settings</h3>
+                    <p>Manage your account information, preferences, and notification settings.</p>
+                    <a href="contact.html" class="btn btn-outline">Settings</a>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <a href="services.html" class="btn btn-primary">Request New Service</a>
+                <a href="contact.html" class="btn btn-secondary">Schedule Appointment</a>
+                <a href="projects.html" class="btn btn-outline">View All Projects</a>
+            </div>
+            
+            <!-- Logout Button at Bottom -->
+            <div style="text-align: center; margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--border-color);">
+                <a href="index.html" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize theme immediately to prevent flash
+        (function() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        })();
+    </script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Ensure theme is set on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        });
+    </script>
+</body>
+</html>
+

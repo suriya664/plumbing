@@ -1,0 +1,149 @@
+===========================================
+QUALITY ASSURANCE CHECKLIST
+===========================================
+
+Use this checklist to verify all requirements are met:
+
+1. FAVICON VERIFICATION
+   [ ] Open index.html in browser - favicon appears in tab
+   [ ] Open about.html in browser - favicon appears in tab
+   [ ] Open services.html in browser - favicon appears in tab
+   [ ] Open all other pages - favicon appears on each
+   [ ] Check in multiple browsers (Chrome, Firefox, Edge)
+   [ ] Verify favicon.ico exists in /assets/images/
+   [ ] Verify favicon-192x192.png exists in /assets/images/
+
+2. LOGO REDIRECT TO HOMEPAGE
+   [ ] Click logo on index.html - stays on homepage
+   [ ] Click logo on about.html - redirects to index.html
+   [ ] Click logo on services.html - redirects to index.html
+   [ ] Click logo on all other pages - redirects to index.html
+   [ ] Test on mobile view - logo still redirects correctly
+
+3. ACTIVE NAVIGATION ITEM HIGHLIGHTING
+   [ ] On index.html - "Home" link has .active class (highlighted)
+   [ ] On about.html - "About" link has .active class (highlighted)
+   [ ] On services.html - "Services" link has .active class (highlighted)
+   [ ] On projects.html - "Projects" link has .active class (highlighted)
+   [ ] On testimonials.html - "Testimonials" link has .active class (highlighted)
+   [ ] On faq.html - "FAQ" link has .active class (highlighted)
+   [ ] On contact.html - "Contact" link has .active class (highlighted)
+   [ ] Active link has distinct background/underline styling
+
+4. PHONE NUMBERS WITH + PREFIX AND CLICKABLE
+   [ ] All phone numbers start with + (e.g., +1 555 123 4567)
+   [ ] Phone numbers are wrapped in <a href="tel:..."> tags
+   [ ] Clicking phone number opens phone dialer (on mobile)
+   [ ] Phone numbers appear in footer on all pages
+   [ ] Phone numbers appear in contact.html page
+
+5. FORM VALIDATION AND AJAX SUBMISSION
+   [ ] Contact form validates required fields
+   [ ] Email field validates email format
+   [ ] Phone field validates phone format (if provided)
+   [ ] Error messages appear for invalid fields
+   [ ] Form submits via AJAX (no page reload)
+   [ ] Success message appears after submission
+   [ ] Login form validates email and password
+   [ ] Register form validates all fields including password match
+   [ ] Forms show loading state during submission
+
+6. IMAGES USE SRCSET AND LAZY-LOAD
+   [ ] Images have loading="lazy" attribute
+   [ ] Images use proper srcset where applicable
+   [ ] Images maintain aspect ratio (not stretched)
+   [ ] Images use object-fit: cover in CSS
+   [ ] Images load progressively (lazy loading works)
+
+7. BUTTONS HAVE HOVER AND FOCUS STATES
+   [ ] All buttons change color on hover
+   [ ] All buttons have visible focus outline
+   [ ] Buttons have active state (when clicked)
+   [ ] Buttons have smooth transitions
+   [ ] Buttons never match background color (good contrast)
+   [ ] Test with keyboard navigation (Tab key)
+
+8. FOOTER EXTERNAL LINKS OPEN IN NEW TABS
+   [ ] Social media links have target="_blank"
+   [ ] Social media links have rel="noopener noreferrer"
+   [ ] External links open in new tab
+   [ ] Footer links work correctly
+
+9. RESPONSIVE DESIGN TESTING
+   [ ] Desktop view (1920px+) - layout looks good
+   [ ] Tablet view (768px-1024px) - layout adapts
+   [ ] Mobile view (320px-767px) - hamburger menu appears
+   [ ] Hamburger menu toggles correctly on mobile
+   [ ] Navigation closes when clicking outside
+   [ ] Navigation closes when clicking a link
+   [ ] No content overlap on any screen size
+   [ ] Text is readable on all screen sizes
+   [ ] Images scale properly on mobile
+
+10. LOGIN AND REGISTER PAGES
+    [ ] Login page has NO header
+    [ ] Login page has NO footer
+    [ ] Register page has NO header
+    [ ] Register page has NO footer
+    [ ] Logo is centered in the card on login page
+    [ ] Logo is centered in the card on register page
+    [ ] Logo links to index.html on both pages
+    [ ] Forms work correctly on both pages
+
+11. TYPOGRAPHY AND ALIGNMENT
+    [ ] H1 font-weight = 700
+    [ ] H2 font-weight = 600
+    [ ] H3 font-weight = 300
+    [ ] Subheadings (h2, h3) below main titles are center-aligned
+    [ ] Consistent line-height throughout
+    [ ] Good text contrast (WCAG AA compliant)
+
+12. SOCIAL ICONS
+    [ ] Social icons use original brand colors on hover
+    [ ] Facebook icon - blue on hover (#1877f2)
+    [ ] Twitter icon - blue on hover (#1da1f2)
+    [ ] Instagram icon - gradient on hover
+    [ ] LinkedIn icon - blue on hover (#0077b5)
+    [ ] Icons have hover effects (scale or color change)
+    [ ] Icons are properly sized and aligned
+
+13. ACCESSIBILITY
+    [ ] All images have alt attributes
+    [ ] Forms have proper labels
+    [ ] Error messages are accessible (ARIA attributes)
+    [ ] Focus states visible for all interactive elements
+    [ ] Keyboard navigation works (Tab, Enter, Esc)
+    [ ] Sufficient color contrast throughout
+
+14. PERFORMANCE
+    [ ] CSS is in single file (assets/css/style.css)
+    [ ] JavaScript is in single file (assets/js/script.js)
+    [ ] Images are optimized (lazy loading)
+    [ ] No layout shift on page load
+    [ ] Smooth animations (respects prefers-reduced-motion)
+
+15. CROSS-PAGE CONSISTENCY
+    [ ] Header is identical on all pages (except login/register)
+    [ ] Footer is identical on all pages (except login/register)
+    [ ] Navigation menu items are in same order
+    [ ] Spacing between menu items is consistent
+    [ ] No extra empty space below navbar
+    [ ] No extra empty space before headings
+
+16. BROWSER COMPATIBILITY
+    [ ] Test in Chrome (latest)
+    [ ] Test in Firefox (latest)
+    [ ] Test in Safari (latest)
+    [ ] Test in Edge (latest)
+    [ ] Test on mobile browsers (iOS Safari, Chrome Mobile)
+
+===========================================
+NOTES
+===========================================
+- All pages should be tested individually
+- Use browser developer tools to test responsive breakpoints
+- Test with JavaScript enabled and disabled
+- Verify all internal links work correctly
+- Check that external links open in new tabs
+- Ensure no console errors appear
+

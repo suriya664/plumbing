@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .wrench { fill: #0066CC; }
+      .background { fill: #FFFFFF; }
+    </style>
+  </defs>
+  <rect class="background" width="100" height="100" rx="20"/>
+  <path class="wrench" d="M50 20 L45 30 L50 35 L55 30 Z M30 40 L35 45 L40 40 L35 35 Z M60 50 L65 55 L70 50 L65 45 Z M50 60 L45 70 L50 75 L55 70 Z M20 50 L25 55 L30 50 L25 45 Z M70 50 L75 55 L80 50 L75 45 Z M50 30 L30 50 L50 70 L70 50 Z" transform="rotate(45 50 50)"/>
+  <circle class="wrench" cx="50" cy="50" r="8"/>
+</svg>
+
