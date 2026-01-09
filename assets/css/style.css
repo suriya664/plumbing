@@ -2336,6 +2336,16 @@ button[type="button"]:focus {
     background-color: #1a1a1a;
 }
 
+[data-theme="dark"] .footer-section a span,
+[data-theme="dark"] .footer a span {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .footer-section a,
+[data-theme="dark"] .footer a {
+    color: #ffffff;
+}
+
 [data-theme="dark"] .form-group input,
 [data-theme="dark"] .form-group textarea,
 [data-theme="dark"] .form-group select {
